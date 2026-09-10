@@ -52,23 +52,25 @@ const task3Answer = null; // <- ваша відповідь
 function divide(a, b) {
   // ваш код тут
 
-  const numberOne = Number(a);
-  const numberThoo = Number(b);
-
-  if(
-  Number.isNaN(numberOne) ||
-    Number.isNaN(numberThoo) ||
-    numberThoo === 0 ||
-    !Number.isFinite(numberOne / numberThoo))
-  {
-    return "Помилка: неможливо виконати ділення";
+// Перевіряємо, чи є аргументи числами за типом (щоб рядки на кшталт "10" чи "2" вважалися помилкою)
+  if (typeof a !== 'number' || typeof b !== 'number') {
+    return "Некоректні дані";
   }
 
-  const result = numberOne / numberThoo;
+  // Додаткові перевірки для NaN, нескінченності та ділення на нуль
+  if (
+    Number.isNaN(a) ||
+    Number.isNaN(b) ||
+    b === 0 ||
+    !Number.isFinite(a / b)
+  ) {
+    return "Некоректні дані";
+  }
+
+  const result = a / b;
   return `Результат ділення: ${result}`;
 }
 
-console.log(divide(15, 2));
 
 
 
@@ -85,15 +87,12 @@ function task5() {
     const randomNum = Math.floor(Math.random() * 20) + 1;
     arr.push(randomNum);
   }
-  
-  arr.push(10);
 
-  console.log(arr.includes(10));
-  
-  return arr;
+  arr.push(10);
+  return(arr.includes(10));
 }
 
-console.log(task5());
+
 
 // повертає true якщо знайдено 10, інакше false
 
